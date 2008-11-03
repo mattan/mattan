@@ -84,7 +84,7 @@ class kipaValidate2(webapp.RequestHandler):
         m = self.request
         self.response.out.write("result.status_code:")
         M=self.request.get('kipanick')
-        self.response.out.write(M)
+        self.response.out.write(str(M).__len__())
         self.response.out.write("<BR>")
         for arg in self.request.arguments():
             self.response.out.write(arg+"="+self.request.get(arg)+"<BR>")
@@ -98,7 +98,7 @@ class kipaValidate2(webapp.RequestHandler):
             self.response.out.write("yep")
         else:
             self.response.out.write("nop")
-        self.get()
+        #self.get()
         #self.response.out.write(result.content)
         
 ###לפרק את הקוד לחלקים VX
