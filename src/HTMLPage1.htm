@@ -4,36 +4,36 @@
 </head>
 <body dir="rtl">
   <form action="/kipkip2" method="post">
-    λιπει λΰο:
+    Χ›Χ™Χ Χ•Χ™ Χ›ΧΧ:
     <input id="Text1" type="text" size="20" name="name" value="{{ name }}" />
-    (ηεαδ)<br />
-    ξιο:<br />
+    (Χ—Χ•Χ‘Χ”)<br />
+    ΧΧ™Χ:<br />
     <input id="Radio1" type="radio" name="sex" value="M" />
-    ζλψ<br />
+    Χ–Χ›Χ¨<br />
     <input id="Radio2" type="radio" name="sex" value="F" />
-    πχαδ<br />
+    Χ Χ§Χ‘Χ”<br />
     <input id="Radio3" type="radio" name="sex" value="NA" checked />
-    ΰηψ (ΰν μΰ ϊφιιπι ΰϊ δξιο δΰϊψ ιτπδ ΰμιικ λΰιμε ΰϊ αο (μξωμ "δλπρ ων" αξχεν "δλπιρι"))<br />
-    βιμ:
+    ΧΧ—Χ¨ (ΧΧ ΧΧ ΧªΧ¦Χ™Χ™Χ Χ™ ΧΧª Χ”ΧΧ™Χ Χ”ΧΧªΧ¨ Χ™Χ¤Χ Χ” ΧΧΧ™Χ™Χ Χ›ΧΧ™ΧΧ• ΧΧª Χ‘Χ (ΧΧΧ©Χ "Χ”Χ›Χ Χ΅ Χ©Χ" Χ‘ΧΧ§Χ•Χ "Χ”Χ›Χ Χ™Χ΅Χ™"))<br />
+    Χ’Χ™Χ:
     <input id="Text2" type="text" size="20" name="age" value="{{ age }}" />
-    (μΰ ηεαδ)<br />
-    βψ α:
+    (ΧΧ Χ—Χ•Χ‘Χ”)<br />
+    Χ’Χ¨ Χ‘:
     <input id="Text3" type="text" size="20" name="city" value="{{ city }}" />
-    (μΰ ηεαδ)<br />
+    (ΧΧ Χ—Χ•Χ‘Χ”)<br />
     <br />
-    <input id="Button1" type="button" value="ωξεψ εδξωκ μωμα ωιϊεσ τςεμδ ςν λιτδ" /><br />
+    <input id="Button1" type="button" value="Χ©ΧΧ•Χ¨ Χ•Χ”ΧΧ©Χ ΧΧ©ΧΧ‘ Χ©Χ™ΧªΧ•Χ£ Χ¤ΧΆΧ•ΧΧ” ΧΆΧ Χ›Χ™Χ¤Χ”" /><br />
     <br />
-    λιπει αλιτδ:&nbsp; &nbsp;<input id="Text4" type="text" size="20" name="kipanick" value="{{ kipanick }}" />
-    (μΰ ηεαδ)<br />
-    ρρξΰ αλιτδ:
+    Χ›Χ™Χ Χ•Χ™ Χ‘Χ›Χ™Χ¤Χ”:&nbsp; &nbsp;<input id="Text4" type="text" size="20" name="kipanick" value="{{ kipanick }}" />
+    (ΧΧ Χ—Χ•Χ‘Χ”)<br />
+    Χ΅Χ΅ΧΧ Χ‘Χ›Χ™Χ¤Χ”:
     <input id="Text5" type="password" size="20" name="kipapass" value="{{ kipapass }}" />
-    (μΰ ηεαδ)<br />
+    (ΧΧ Χ—Χ•Χ‘Χ”)<br />
     <br />
-    *ΰιο μι λεεπδ μςωεϊ ωιξεω μψςδ αρρξΰεϊ ΰαμ&nbsp;<br />
-    ζδ αργψ ΰν ΰϊδ ξτηγ μϊϊ ΰϊ δρρξΰ ωμκ :-)<br />
+    *ΧΧ™Χ ΧΧ™ Χ›Χ•Χ•Χ Χ” ΧΧΆΧ©Χ•Χª Χ©Χ™ΧΧ•Χ© ΧΧ¨ΧΆΧ” Χ‘Χ΅Χ΅ΧΧΧ•Χª ΧΧ‘Χ&nbsp;<br />
+    Χ–Χ” Χ‘Χ΅Χ“Χ¨ ΧΧ ΧΧªΧ” ΧΧ¤Χ—Χ“ ΧΧªΧª ΧΧª Χ”Χ΅Χ΅ΧΧ Χ©ΧΧ :-)<br />
     <input type="submit" value="Sign Guestbook">
-    <input id="Button3" type="button" value="εεγΰ ωδρρξΰ πλεπδ" onclick="this.form.send"/> {{ passtrue }}<br />
-    <input id="Button2" type="button" value="ωξεψ εδξωκ μωμα ξφιΰϊ ηαψιν ΰε ΰειαιν" onclick="return Button2_onclick()" />
+    <input id="Button3" type="button" value="Χ•Χ•Χ“Χ Χ©Χ”Χ΅Χ΅ΧΧ Χ Χ›Χ•Χ Χ”" onclick="this.form.send"/> {{ passtrue }}<br />
+    <input id="Button2" type="button" value="Χ©ΧΧ•Χ¨ Χ•Χ”ΧΧ©Χ ΧΧ©ΧΧ‘ ΧΧ¦Χ™ΧΧª Χ—Χ‘Χ¨Χ™Χ ΧΧ• ΧΧ•Χ™Χ‘Χ™Χ" onclick="return Button2_onclick()" />
     <br />
     <br />
     <table style="width: 570; height: 135px">
@@ -44,16 +44,16 @@
             <td width="109">
                 <b>
                 <input id="Radio7" type="radio" name="{{ name }}" value="good" />
-                <font color="#00FF00">θεα</font><br />
+                <font color="#00FF00">ΧΧ•Χ‘</font><br />
                 <input id="Radio8" type="radio" value="nutral" name="{{ name  }}" checked />
-                πιθψΰμι<br />
+                Χ Χ™ΧΧ¨ΧΧΧ™<br />
                 <input id="Radio9" type="radio" name="{{ name  }}" value="bad" />
-                <font color="#FF0000">ψς</font></b></td>
+                <font color="#FF0000">Χ¨ΧΆ</font></b></td>
             <td width="286">
-                δραψ:<br />
+                Χ”Χ΅Χ‘Χ¨:<br />
                 <input id="Text7" style="height: 112; width:112" type="text" size="20" name="reson" value="{{ reson }}" /></td>
         </tr>
-    </table><input id="Button4" type="button" value="ωμη" />
+    </table><input id="Button4" type="button" value="Χ©ΧΧ—" />
  </form>
 </body>
 </html>

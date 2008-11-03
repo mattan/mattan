@@ -84,7 +84,6 @@ class kipaValidate2(webapp.RequestHandler):
         m = self.request
         self.response.out.write("result.status_code:")
         M=self.request.get('kipanick')
-        self.response.out.write(str(M).__len__())
         self.response.out.write("<BR>")
         for arg in self.request.arguments():
             self.response.out.write(arg+"="+self.request.get(arg)+"<BR>")
