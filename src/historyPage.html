@@ -1,0 +1,6 @@
+<a>History:</a><BR>
+{% for x in Table %} 
+------------------------------------------------------<BR>
+{{ x.ID.email }} ( {{ x.ip }} ) at {{ x.date }} created {{ x.cdate }} :<BR>
+{{ x.data }}<BR>
+{% endfor %}

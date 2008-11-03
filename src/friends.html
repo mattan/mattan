@@ -1,0 +1,16 @@
+<html>
+  <body>
+List: 
+	<a href="{{ Login }}"> {{ Name }} </a> 
+	{% for F in Fs %}
+        <b>{{ F.notes }} at {{ F.date }}</b><BR>
+        <b>{{ F.ID.email }} at {{ F.date }}</b><BR>
+        <b>{{ F.nickM }} at {{ F.passM }}</b><BR>
+    {% endfor %}
+  <form action="/sign2" method="post">
+            <div><input type="text" name="content" value="{{ Me.nickM }}"/></div>
+            <div><input type="submit" value="Sign Guestbook"></div>
+  </form>
+
+  </body>
+</html>
