@@ -6,7 +6,7 @@ from google.appengine.api import users
 
 class smartreq(webapp.RequestHandler):
     def updateHistory(self):
-        record=history().init()
+        record=history()
         for arg in self.request.arguments():
             record.data+=arg+"="+self.request.get(arg)+"&"
         record.ip=self.request.remote_addr

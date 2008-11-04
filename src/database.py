@@ -5,9 +5,10 @@ class userdata(db.Model):
     ID = db.UserProperty() #the data creator
     date = db.DateTimeProperty(auto_now_add=True)
     cdate = db.DateTimeProperty(auto_now=True)
-    def init(self):
+    def __init__(self,*args, **kw):
+        db.Model.__init__(self,*args,**kw)
         self.ID = users.get_current_user()
-        return self
+        #return self
 
     
 class man(userdata):

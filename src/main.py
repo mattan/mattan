@@ -59,7 +59,16 @@ class mattanapp2(webapp.RequestHandler):
         else:
             self.redirect(users.create_login_url("/sign"))
             return
-
+        
+#        for arg in self.request.arguments():
+#            record.data(arg+"="+self.request.get(arg)+"&")
+        
+        m = man()
+        writeme = ""
+        for f in self.request.arguments():
+            writeme += "Field="+f
+            setattr(m,f,self.request.get(f))
+        m.put()
         #Me = man(None,users.get_current_user().email())
         a = db.Key.from_path("man",users.get_current_user().email())      
         if (man.get(a)):
@@ -82,12 +91,9 @@ class kipaValidate(webapp.RequestHandler):
 class kipaValidate2(webapp.RequestHandler):
     def post(self):
         m = self.request
-        self.response.out.write("result.status_code:")
-        M=self.request.get('kipanick')
-        self.response.out.write("<BR>")
         for arg in self.request.arguments():
             self.response.out.write(arg+"="+self.request.get(arg)+"<BR>")
-        form_fields = {  "nick":M,  "password":self.request.get('kipapass') }
+        form_fields = {  "nick":unicode(self.request.get('kipanick')),  "password":unicode(self.request.get('kipapass')) }
         form_data = urllib.urlencode(form_fields)
         result = urlfetch.fetch(url="http://www.kipa.co.il/my/login2.asp",
                                 payload=form_data,
@@ -100,14 +106,14 @@ class kipaValidate2(webapp.RequestHandler):
         #self.get()
         #self.response.out.write(result.content)
         
-###мфшч аъ дчег мзмчйн VX
-###ммоег тм AJAX 
-###моцеа гшк резд мтбег тн дDB
-### мдъзбш мвевм CODE
-### мщреъ аъ дцбт щм ддтшеъ
-### getattr(obj,"meth") мзбш чег мъйбъ ичси
-### дан арй цшйк млъеб лм гбш 7 фтойн?
-### айк тещйн cgi.escape( бHTML
+###пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ VX
+###пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ AJAX 
+###пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅDB
+### пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ CODE
+### пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+### getattr(obj,"meth") пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+### пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ 7 пїЅпїЅпїЅпїЅпїЅ?
+### пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ cgi.escape( пїЅHTML
 
 #just a engin - ignor 
 application = webapp.WSGIApplication(
