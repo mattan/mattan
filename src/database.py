@@ -1,5 +1,6 @@
+from import_tools import *
+
 from google.appengine.ext import db
-from google.appengine.api import users
 
 class userdata(db.Model):
     ID = db.UserProperty() #the data creator

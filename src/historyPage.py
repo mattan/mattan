@@ -1,12 +1,4 @@
-import os
-from google.appengine.ext import webapp
-from database import *
-from google.appengine.ext.webapp import template
-from google.appengine.api import users
-import datetime
-
 from smartreq import *
-
 
 class historyPage(smartreq):
     def showPage(self):
