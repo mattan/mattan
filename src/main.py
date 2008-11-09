@@ -30,6 +30,16 @@ application = webapp.WSGIApplication(
                                            ('/sign', mattanapp),
                                            ('/sign2/', mattanapp2),
                                            ('/kipkip', kipaValidate),
+                                           ('/view-table-no-', kipaValidate),
+                                           #^/view-(.*)-no-(.*)$
+                                           #solve = re.compile("^/view-(.*)-no-(.*)$")
+                                           #solve.findall(a)[0]
+                                           #
+                                           #warning! "^/view-([^-]*)-no-([^-]*)$"
+                                           ('/edit-table-no-', kipaValidate),
+                                           ('/create-table', kipaValidate),
+                                           ('/delete-table-no-', kipaValidate),
+                                           ('/choose-table', kipaValidate),
                                            ('/historyPage', historyPage)],
                                            debug=True)
   

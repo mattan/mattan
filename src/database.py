@@ -10,6 +10,11 @@ class userdata(db.Model):
         db.Model.__init__(self,*args,**kw)
         self.ID = users.get_current_user()
         #return self
+    def to_html(self):
+        return('<a href="' +
+                "byby" + '">' +
+                str(self.ID.email()) + "btbtb" +
+                "</a><BR>") 
 
     
 class man(userdata):
