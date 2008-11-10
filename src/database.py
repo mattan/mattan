@@ -2,6 +2,15 @@ from import_tools import *
 
 from google.appengine.ext import db
 
+class Item(db.Model):  
+    name = db.StringProperty()  
+    quantity = db.IntegerProperty(default=1)  
+    target_price = db.FloatProperty()  
+    priority = db.StringProperty(default='Medium',choices=[    'High', 'Medium', 'Low'])  
+    entry_time = db.DateTimeProperty(auto_now_add=True)  
+    added_by = db.UserProperty()
+
+
 class userdata(db.Model):
     ID = db.UserProperty() #the data creator
     date = db.DateTimeProperty(auto_now_add=True)
@@ -14,12 +23,28 @@ class userdata(db.Model):
         return('<a href="' +
                 "byby" + '">' +
                 str(self.ID.email()) + "btbtb" +
-                "</a><BR>") 
+                "</a><BR>")
+        
+class securitydata(userdata):
+    Mread = db.StringListProperty()
+    MWrite = db.StringListProperty()
+    Title = db.StringProperty(multiline=False)
+    URLkey = db.StringProperty(multiline=False)#validator=^[a-z]*$
+    
+class group(securitydata):
+    "nothing special"
+    
+
+ 
 
     
 class man(userdata):
     nickM = db.StringProperty(multiline=True)
     passM = db.StringProperty(multiline=False)
+    def __str__(self):
+        if (self.nickM):
+            return self.nickM
+        return "<BR>i<BR>"
 
        
 class kind(userdata):
@@ -36,3 +61,9 @@ class history(userdata):
     ip = db.StringProperty(multiline=False) #remote_addr
     URL = db.StringProperty(multiline=False)
     data = db.StringProperty(multiline=False)
+    test2 = db.SelfReferenceProperty()
+
+class ItemForm(djangoforms.ModelForm):  
+    class Meta:    
+        model = history    
+        exclude = ['added_by']

@@ -10,7 +10,8 @@ class mattanapp(webapp.RequestHandler):
             return
         
 
-        a = db.Key.from_path("man",users.get_current_user().email())      
+        a = db.Key.from_path("man",users.get_current_user().email())
+        a = db.Key.from_path("man",users.get_current_user().email())            
         if (man.get(a)):
             Me = man.get(a)
         else:

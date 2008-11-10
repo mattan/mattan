@@ -11,7 +11,38 @@ from mattanapp import *
 class MainPage(webapp.RequestHandler):
   def get(self):
       self.response.headers['Content-Type'] = 'text/plain'
-      self.response.out.write('Hello, webapp World!')
+      self.response.out.write('Hello, webapp World!')            
+              
+              
+class MainPage2(webapp.RequestHandler):  
+  def get(self):    
+      self.response.out.write('<html><body>'                            
+                              '<form method="POST" '                            
+                              'action="/">'                            
+                              '<table>')    
+      # This generates our shopping list form and writes it in the response    
+      self.response.out.write(ItemForm())    
+      self.response.out.write('</table>'                            
+                              '<input type="submit">'                            
+                              '</form></body></html>')
+  def post(self):    
+      data = ItemForm(data=self.request.POST)    
+      if data.is_valid():      
+          # Save the data, and redirect to the view page      
+          entity = data.save(commit=False)      
+          entity.added_by = users.get_current_user()      
+          entity.put()      
+          self.redirect('/items.html')    
+      else:      
+          # Reprint the form      
+          self.response.out.write('<html><body>'                              
+                                  '<form method="POST" '                              
+                                  'action="/">'                              
+                                  '<table>')      
+          self.response.out.write(data)     
+          self.response.out.write('</table>'                              
+                                  '<input type="submit">'                              
+                                  '</form></body></html>')
               
  
 #just a engin - ignor
@@ -26,7 +57,7 @@ from pprint import pprint
 
 pprint(appline)
 application = webapp.WSGIApplication(
-                                           [('/', MainPage),
+                                           [('/', MainPage2),
                                            ('/sign', mattanapp),
                                            ('/sign2/', mattanapp2),
                                            ('/kipkip', kipaValidate),
