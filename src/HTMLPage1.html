@@ -3,16 +3,16 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 </head>
 <body dir="rtl">
-  <form action="/kipkip" method="post">
+  <form method="POST">
     כינוי כאן:
     <input id="Text1" type="text" size="20" name="name" value="{{ name }}" />
     (חובה)<br />
     מין:<br />
-    <input id="Radio1" type="radio" name="sex" value="M" />
+    <input id="Radio1" type="radio" name="sex" value="M" {% ifequal sex "M" %}checked{% endifequal %}/>
     זכר<br />
-    <input id="Radio2" type="radio" name="sex" value="F" />
+    <input id="Radio2" type="radio" name="sex" value="F" {% ifequal sex "F" %}checked{% endifequal %}/>
     נקבה<br />
-    <input id="Radio3" type="radio" name="sex" value="NA" checked />
+    <input id="Radio3" type="radio" name="sex" value="NA" {% ifequal sex "NA" %}checked{% endifequal %} {% ifequal sex "" %}checked{% endifequal %}/>
     אחר (אם לא תצייני את המין האתר יפנה אלייך כאילו את בן (למשל "הכנס שם" במקום "הכניסי"))<br />
     גיל:
     <input id="Text2" type="text" size="20" name="age" value="{{ age }}" />
@@ -43,11 +43,11 @@
             </td>
             <td width="109">
                 <b>
-                <input id="Radio7" type="radio" name="{{ name }}" value="good" />
+                <input id="Radio7" type="radio" name="1" value="good" />
                 <font color="#00FF00">טוב</font><br />
-                <input id="Radio8" type="radio" value="nutral" name="{{ name  }}" checked />
+                <input id="Radio8" type="radio" value="nutral" name="1" checked />
                 ניטראלי<br />
-                <input id="Radio9" type="radio" name="{{ name  }}" value="bad" />
+                <input id="Radio9" type="radio" name="1" value="bad" />
                 <font color="#FF0000">רע</font></b></td>
             <td width="286">
                 הסבר:<br />

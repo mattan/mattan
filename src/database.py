@@ -2,7 +2,7 @@ from import_tools import *
 
 from google.appengine.ext import db
 
-class Item(db.Model):  
+class Item(db.Expando):  
     name = db.StringProperty()  
     quantity = db.IntegerProperty(default=1)  
     target_price = db.FloatProperty()  
@@ -11,7 +11,7 @@ class Item(db.Model):
     added_by = db.UserProperty()
 
 
-class userdata(db.Model):
+class userdata(db.Expando):
     ID = db.UserProperty() #the data creator
     date = db.DateTimeProperty(auto_now_add=True)
     cdate = db.DateTimeProperty(auto_now=True)
@@ -33,12 +33,13 @@ class securitydata(userdata):
     
 class group(securitydata):
     "nothing special"
-    
+class HTML(securitydata):
+    "nothing special"    
 
  
 
     
-class man(userdata):
+class man(userdata): #never delete use to track how on line
     nickM = db.StringProperty(multiline=True)
     passM = db.StringProperty(multiline=False)
     def __str__(self):
@@ -57,11 +58,12 @@ class friends1(userdata):
     value = kind
     notes = db.StringProperty(multiline=True)
       
-class history(userdata):
+class history(userdata):#never delete use to track what happening
     ip = db.StringProperty(multiline=False) #remote_addr
     URL = db.StringProperty(multiline=False)
     data = db.StringProperty(multiline=False)
     test2 = db.SelfReferenceProperty()
+
 
 class ItemForm(djangoforms.ModelForm):  
     class Meta:    

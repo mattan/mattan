@@ -7,7 +7,7 @@ class kipaValidate(smartreq):
     def get(self):
         path = os.path.join(os.path.dirname(__file__), 'HTMLPage1.htm')
         self.response.out.write(template.render(path , {}))
-    def post(self):
+    def handlePa2ge(self):
         form_fields = {  "nick":unicode(self.request.get('kipanick')),  "password":unicode(self.request.get('kipapass')) }
         form_data = urllib.urlencode(form_fields)
         result = urlfetch.fetch(url="http://www.kipa.co.il/my/login2.asp",
@@ -18,5 +18,5 @@ class kipaValidate(smartreq):
             self.response.out.write("yep")
         else:
             self.response.out.write("nop")
-        self.get()
+        #self.get()
         #self.response.out.write(result.content)

@@ -46,32 +46,43 @@ class MainPage2(webapp.RequestHandler):
               
  
 #just a engin - ignor
+from pprint import pprint
 def issub(c,x):
     try:
         return issubclass(c, x)
     except TypeError:
         return False
-appline = filter(lambda x: issub(x[1], webapp.RequestHandler),vars().items() )
-appline = map(lambda x: ("/"+x[0],x[1]),appline)
-from pprint import pprint
+    appline = filter(lambda x: issub(x[1], webapp.RequestHandler),vars().items() )
+    appline = map(lambda x: ("/"+x[0],x[1]),appline)
+    pprint(appline)
 
-pprint(appline)
+
+
 application = webapp.WSGIApplication(
                                            [('/', MainPage2),
                                            ('/sign', mattanapp),
                                            ('/sign2/', mattanapp2),
                                            ('/kipkip', kipaValidate),
-                                           ('/view-table-no-', kipaValidate),
+                                           ('/historyPage', historyPage),
+                                           
+                                           #('/view-table-no-', kipaValidate),
                                            #^/view-(.*)-no-(.*)$
                                            #solve = re.compile("^/view-(.*)-no-(.*)$")
                                            #solve.findall(a)[0]
                                            #
                                            #warning! "^/view-([^-]*)-no-([^-]*)$"
-                                           ('/edit-table-no-', kipaValidate),
-                                           ('/create-table', kipaValidate),
-                                           ('/delete-table-no-', kipaValidate),
-                                           ('/choose-table', kipaValidate),
-                                           ('/historyPage', historyPage)],
+                                           ('/view-([^-]*)-number-([^-]*)$', smartreq),
+                                           ('/edit-([^-]*)-number-([^-]*)$', smartreq),
+                                           ('/delete-([^-]*)-number-([^-]*)$', smartreq),
+                                           ('/create-([^-]*)-number-([^-]*)$', smartreq),
+                                           
+                                           ('/view-([^-]*)()$', smartreq),
+                                           ('/edit-([^-]*)()$', smartreq),
+                                           ('/delete-([^-]*)()$', smartreq),
+                                           ('/create-([^-]*)()$', smartreq),
+                                           ('/choose-([^-]*)()$', smartreq),
+                                           
+                                           ('/nothing', historyPage)],
                                            debug=True)
   
 def main():
