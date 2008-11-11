@@ -9,7 +9,7 @@ class smartreq(webapp.RequestHandler):
             record.data+=arg+"="+self.request.get(arg)+"&"
         record.ip=self.request.remote_addr
         record.URL=self.request.url
-        self.response.out.write(record.__dict__)
+        #self.response.out.write(record.__dict__)
         record.put()
     def validateUser(self): #Logout=users.create_logout_url("/sign")
         if(not users.get_current_user()):
