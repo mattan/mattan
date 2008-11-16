@@ -1,0 +1,46 @@
+<head>
+    <title>Mattan</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+</head>
+<body dir="rtl">
+  {% for x in t.history_set|dictsort:"date"  %}
+  	{{forloop.counter}}){{ x.date }}<BR>
+  	{% for y in x.history_set|dictsortreversed:"date" %}
+  		**{{ y.date }} <BR>
+  	{% endfor %}
+  {% endfor %}
+  <BR><BR>
+  {% for x in t.history_set|dictsortreversed:"history_set.count" %}
+  	*{{ x.history_set.count}}<BR>
+  {% endfor %}
+  
+
+  <form method="POST">
+    כינוי כאן:
+    {{ t.ID }}
+    ip:
+    {{ ip }}
+    date:
+    {{ date }}
+    cdate:
+    {{ cdate }} <BR>
+    data:
+    <input id="Text1" type="text" size="20" name="ID" value="{{ t.data }}" />
+	<BR>
+
+	
+
+
+    
+    <input type="submit" value="Sign Guestbook">
+ </form>
+</body>
+</html>
+
+<a>History:</a><BR>
+{% for x in Table %} 
+------------------------------------------------------<BR>
+{{ ID }} ( {{ ip }} ) at {{ date }} created {{ cdate }} :<BR>
+{{ data }}<BR>
+{{ test2 }} rrr
+{% endfor %}

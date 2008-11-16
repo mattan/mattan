@@ -1,4 +1,4 @@
-from import_tools import *
+from objshow import *
 
 from google.appengine.ext import db
 
@@ -11,30 +11,8 @@ class Item(db.Expando):
     added_by = db.UserProperty()
 
 
-class userdata(db.Expando):
-    ID = db.UserProperty() #the data creator
-    date = db.DateTimeProperty(auto_now_add=True)
-    cdate = db.DateTimeProperty(auto_now=True)
-    def __init__(self,*args, **kw):
-        db.Model.__init__(self,*args,**kw)
-        self.ID = users.get_current_user()
-        #return self
-    def to_html(self):
-        return('<a href="' +
-                "byby" + '">' +
-                str(self.ID.email()) + "btbtb" +
-                "</a><BR>")
-        
-class securitydata(userdata):
-    Mread = db.StringListProperty()
-    MWrite = db.StringListProperty()
-    Title = db.StringProperty(multiline=False)
-    URLkey = db.StringProperty(multiline=False)#validator=^[a-z]*$
     
-class group(securitydata):
-    "nothing special"
-class HTML(securitydata):
-    "nothing special"    
+ 
 
  
 

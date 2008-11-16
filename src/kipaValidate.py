@@ -18,5 +18,8 @@ class kipaValidate(smartreq):
             self.response.out.write("yep")
         else:
             self.response.out.write("nop")
+        #result = urlfetch.fetch("http://localhost:8080/view-HTML-number-P3")
+        self.response.out.write(result.content)
+        self.response.out.write("------------------------------------")
         #self.get()
         #self.response.out.write(result.content)
