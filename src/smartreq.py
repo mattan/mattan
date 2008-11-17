@@ -43,7 +43,7 @@ class smartreq(webapp.RequestHandler):
         #to do consider to get Mkey from self.request.get("Mkey")  
         try:
             a=db.class_for_kind(table).get_or_insert(Mkey)
-            self.response.out.write(self.request.arguments())
+            #self.response.out.write(self.request.arguments())
             for arg in self.request.arguments():
                 a.__setattr__(arg,self.request.get(arg))
             #filter a from problems

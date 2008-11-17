@@ -39,7 +39,7 @@ class friends1(userdata):
 class history(userdata):#never delete use to track what happening
     ip = db.StringProperty(multiline=False) #remote_addr
     URL = db.StringProperty(multiline=False)
-    data = db.StringProperty(multiline=False)
+    data = db.TextProperty()
     test2 = db.SelfReferenceProperty()
 
 
