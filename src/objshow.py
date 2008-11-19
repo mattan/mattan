@@ -68,6 +68,8 @@ class profile(securitydata):
     def keyInit(self):
         securitydata.keyInit(self)
         self.Sedit = self.key().name()
+class tasks(securitydata):
+    "the profile of each user"
 
 class sendBox1(securitydata):
     "nothing special"
