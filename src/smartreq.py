@@ -22,11 +22,18 @@ class smartreq(webapp.RequestHandler):
                 users.create_logout_url(self.request.url) + '">' +
                 str(me.nickM) +
                 "</a><BR>") 
-    def showPage(self,table,Mkey):
+    def showPage(self,action,table,Mkey):
         #to do test Mkey validation...
         try:
-            a=db.class_for_kind(table).get_or_insert(Mkey)
-            self.response.out.write(a)
+            #if (action=="view" or action=="edit" or action=="create"):
+            if (not Mkey or Mkey==""): 
+                x=db.class_for_kind(table).all()
+                for a in x:
+                    self.response.out.write(a.editS())
+            else: 
+                a=db.class_for_kind(table).get_or_insert(Mkey)
+                a.keyInit()
+                self.response.out.write(a)
             #filter a from problems
             #self.response.out.write(str(a.test2))
             #path = os.path.join(os.path.dirname(__file__), table+'Page1.html')
@@ -37,7 +44,7 @@ class smartreq(webapp.RequestHandler):
             #to do something better
             self.response.out.write("what is "" " + table + " ""?!")
 
-    def handlePage(self,table,Mkey):
+    def handlePage(self,action,table,Mkey):
         #to do test Mkey validation...
         #to do test Mkey !="" and !=^[0-9]  
         #to do consider to get Mkey from self.request.get("Mkey")  
@@ -54,26 +61,16 @@ class smartreq(webapp.RequestHandler):
             return
             
         
-    def get(self,table,Mkey):
+    def get(self,action,table,Mkey):
         self.validateUser() #includes save last login time
         self.updateHistory()
-        self.showPage(table,Mkey)
-    def post(self,table,Mkey):
+        self.showPage(action,table,Mkey)
+    def post(self,action,table,Mkey):
         self.validateUser() #includes save last login time
         self.updateHistory()
-        self.handlePage(table,Mkey)
-        self.get(table,Mkey)
+        self.handlePage(action,table,Mkey)
+        self.get(action,table,Mkey)
         
-    def justatest(self,table,Mkey):
-        form_fields = {  "nick":unicode(self.request.get('kipanick')),  "password":unicode(self.request.get('kipapass')) }
-        form_data = urllib.urlencode(form_fields)
-        result = urlfetch.fetch(url="http://www.kipa.co.il/my/login2.asp",
-                                payload=form_data,
-                                method=urlfetch.POST,
-                                headers={'Content-Type': 'application/x-www-form-urlencoded ; charset=utf-8'})
-        if (not "function check1()" in result.content):
-            self.response.out.write("yep")
-        else:
-            self.response.out.write("nop")
+    
     
         

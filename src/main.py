@@ -61,10 +61,10 @@ def issub(c,x):
 
 application = webapp.WSGIApplication(
                                            [('/', MainPage2),
-                                           ('/sign', mattanapp),
-                                           ('/sign2/', mattanapp2),
-                                           ('/kipkip', kipaValidate),
-                                           ('/historyPage', historyPage),
+                                           #('/sign', mattanapp),
+                                           #('/sign2/', mattanapp2),
+                                           #('/kipkip', kipaValidate),
+                                           #('/historyPage', historyPage),
                                            
                                            #('/view-table-no-', kipaValidate),
                                            #^/view-(.*)-no-(.*)$
@@ -72,16 +72,17 @@ application = webapp.WSGIApplication(
                                            #solve.findall(a)[0]
                                            #
                                            #warning! "^/view-([^-]*)-no-([^-]*)$"
-                                           ('/view-([^-]*)-number-([^-]*)$', smartreq),
-                                           ('/edit-([^-]*)-number-([^-]*)$', smartreq),
-                                           ('/delete-([^-]*)-number-([^-]*)$', smartreq),
-                                           ('/create-([^-]*)-number-([^-]*)$', smartreq),
+                                           ('/(view)-([^-]*)-number-([^-]*)$', smartreq),
+                                           ('/(edit)-([^-]*)-number-([^-]*)$', smartreq),
+                                           ('/(delete)-([^-]*)-number-([^-]*)$', smartreq),
+                                           ('/(create)-([^-]*)-number-([^-]*)$', smartreq),
+                                           ('/(choose)-([^-]*)-number-([^-]*)$', smartreq),
                                            
-                                           ('/view-([^-]*)()$', smartreq),
-                                           ('/edit-([^-]*)()$', smartreq),
-                                           ('/delete-([^-]*)()$', smartreq),
-                                           ('/create-([^-]*)()$', smartreq),
-                                           ('/choose-([^-]*)()$', smartreq),
+                                           ('/(view)-([^-]*)()$', smartreq),
+                                           ('/(edit)-([^-]*)()$', smartreq),
+                                           ('/(delete)-([^-]*)()$', smartreq),
+                                           ('/(create)-([^-]*)()$', smartreq),
+                                           ('/(choose)-([^-]*)()$', smartreq),
                                            
                                            ('/nothing', historyPage)],
                                            debug=True)

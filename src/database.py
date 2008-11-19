@@ -12,18 +12,7 @@ class Item(db.Expando):
 
 
     
- 
 
- 
-
-    
-class man(userdata): #never delete use to track how on line
-    nickM = db.StringProperty(multiline=True)
-    passM = db.StringProperty(multiline=False)
-    def __str__(self):
-        if (self.nickM):
-            return self.nickM
-        return "<BR>i<BR>"
 
        
 class kind(userdata):

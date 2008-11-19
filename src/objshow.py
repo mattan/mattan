@@ -12,26 +12,62 @@ class userdata(db.Expando):
         #return self
     def __str__(self):
         return objshow().edit(self) 
+    def view(self):
+        return objshow().view(self) 
+    def editS(self):
+        return objshow().edit(self,"S") 
+    def viewS(self):
+        return objshow().edit(self,"S") 
+    #def Mdel(self):
+    #    return objshow().Mdel(self) 
     def to_html(self):
         return('<a href="' +
                 "byby" + '">' +
                 #str(self.ID.email()) + "btbtb" +
                 "</a><BR>")
-    
-        
+
+       
 class securitydata(userdata):
     Sedit = db.StringProperty(multiline=False,default="%me%")
     Sview = db.StringProperty(multiline=False,default="%all%")
     Sdelete = db.StringProperty(multiline=False,default="%mng%")
     Title = db.StringProperty(multiline=False)
-    URLkey = db.StringProperty(multiline=False)#validator=^[a-z]*$
+    URLkey = db.StringProperty(multiline=False)
+    def keyInit(self):
+        self.URLkey = "edit-" + str(self.key().kind()) + "-number-" + str(self.key().name())
+   #validator=^[a-z]*$
         #[x for x in a if x in b]==[]
+        
+        
+class man(securitydata): #never delete use to track how on line
+    nickM = db.StringProperty(multiline=False)
+    passM = db.StringProperty(multiline=False)
+    ok = db.StringProperty(multiline=False, default="No") 
+    def kipatest(self):
+        form_fields = {  "nick":unicode(nickM),  "password":unicode(passM) }
+        form_data = urllib.urlencode(form_fields)
+        result = urlfetch.fetch(url="http://www.kipa.co.il/my/login2.asp",
+                                payload=form_data,
+                                method=urlfetch.POST,
+                                headers={'Content-Type': 'application/x-www-form-urlencoded ; charset=utf-8'})
+        if (not "function check1()" in result.content):
+            i=i
+        else:
+            ok="YES!"
+            group.get_or_insert(users.get_current_user().email()+"%kip%",Title="%kip%").save()
+        group.get_or_insert(users.get_current_user().email()+"%all%",Title="%%all%%").save()
+            
 
 class group(securitydata):
-    "nothing special"
+    "the items that let you enter to pages"
 class HTML(securitydata):
     ThePage = db.TextProperty()
-    "nothing special"
+    "the pages"
+class profile(securitydata):
+    "the profile of each user"
+    def keyInit(self):
+        securitydata.keyInit(self)
+        self.Sedit = self.key().name()
 
 class sendBox1(securitydata):
     "nothing special"
@@ -55,31 +91,28 @@ class objshow():
             if item.Title in Slist:
                 return True
         return False        
-    def keyTest(self,itemT):
-        return "edit-" + str(itemT.key().kind()) + "-number-" + str(itemT.key().name())
     def valid(self,r):
         if not re.search("^[a-z]*$",str(r)):
             raise "wrong"
         
-    def error(self,itemT):
+    def error(self,itemT,param=""):
         template_values = Context(itemT._entity) 
-        page=HTML.get_or_insert("error"+"."+str(itemT.key().kind()))
+        page=HTML.get_or_insert("error"+param+"."+str(itemT.key().kind()))
         template=Template(str(page.ThePage))      
         return(template.render(template_values))        
-    def view(self,itemT):
+    def view(self,itemT,param=""):
         if not self.securityTest(itemT.Sview.split(","),itemT.ID):
-            return error(self,itemT)
+            return self.error(itemT,param)
         #itemT._entity["URLkey"]=self.keyTest(itemT)
         template_values = Context(itemT._entity) 
-        page=HTML.get_or_insert("view"+"."+str(itemT.key().kind()))
+        page=HTML.get_or_insert("view"+param+"."+str(itemT.key().kind()))
         template=Template(str(page.ThePage))      
         return(template.render(template_values))        
-    def edit(self,itemT):
+    def edit(self,itemT,param=""):
         if not self.securityTest(itemT.Sedit.split(","),itemT.ID):
-            return view(self,itemT)
-        itemT._entity["URLkey"]=self.keyTest(itemT)
+            return self.view(itemT,param)
         template_values = Context(itemT._entity) 
-        page=HTML.get_or_insert("edit"+"."+str(itemT.key().kind()))
+        page=HTML.get_or_insert("edit"+param+"."+str(itemT.key().kind()))
         if not page.ThePage:
             page.ThePage="""
 <head>
