@@ -14,5 +14,8 @@ from django.template import *
 
 import re
 
+import sys
+reload(sys); sys.setdefaultencoding('utf-8')
+
 #from google.appengine.api import users
 #from database import *
